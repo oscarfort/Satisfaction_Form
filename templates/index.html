@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html style="background-color: #A9F0BA;">
+<head>
+    <title>Formulari</title>
+    <link rel="icon" type="image/gif/png" href="{{ url_for('static' , filename='images/title_img.jpg')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="pt-4 ps-5 pe-5 mb-1 border rounded col-sm-6" style="background-color: #237A2C;">
+                <h1 class="text-light text-center">Formulari de satisfacció</h1>
+                <p class="text-light text-center">Benvinguts al formulari de satisfacció de l activitat realitzada. Esperem que us hagui agradat i ens doneu una bona valoració!</p>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+</header>
+<body style="background-color: #A9F0BA;">
+    {% block content %}
+    <div class="container">
+        <div class="row mt-1">
+            <div class="col-0 col-md-3">
+            </div>
+            <div class="col-12 col-md-6 bg-light border rounded border-info">
+                <form class="form-horizontal" id="formulari_generic" onsubmit="event.preventDefault(); validateMyForm(this);" method="post">
+                    <div class="form-group mt-3 mb-3 row align-items-end">
+                        <div class="col-12 col-md-3">
+                            <label class="mb-0 h5" for="name">Nom:</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" class="form-control" id="name" placeholder="Nom" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-3 row align-items-end">
+                        <div class="col-sm-3">
+                            <label class="mb-0 h5" for="second_name">Cognoms:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="second_name" placeholder="Cognoms" name="second_name">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-3 row align-items-end">
+                        <div class="col-sm-3">
+                            <label class="mb-0 h5" for="age">Edat:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="age" placeholder="Edat" name="age">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-3 row align-items-end">
+                        <div class="col-sm-3">
+                            <label class="mb-0 h5" for="school">Escola/Institut:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="school" placeholder="Escola/Institut" name="school">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-3 row align-items-end">
+                        <div class="col-sm-3">
+                            <label class="mb-0 h5" for="curs">Curs:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <select class="custom-select" id="curs" name="curs">
+                                <option selected>Tria...</option>
+                                <option value="1">Infantil</option>
+                                <option value="2">Primària</option>
+                                <option value="3">Secundària</option>
+                                <option value="4">Batxillerat</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-3 row align-items-end">
+                        <div class="col-sm-3">
+                            <label class="mb-0 h5" for="gender">Gènere:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <select class="custom-select" id="gender" name="gender">
+                                <option selected>Tria...</option>
+                                <option value="1">Masculí</option>
+                                <option value="2">Femení</option>
+                                <option value="3">No definit</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning d-none" id="alert">
+                        <strong>Warning!</strong> Falten dades per afegir!
+                      </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn text-light m-3" style="background-color: #237A2C;">Continua 🢂</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-0 col-md-3">
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+
+    function validateMyForm(form) {
+        var Curs = document.getElementById('curs').value;
+        var Nom = document.getElementById('name').value;
+        var Cognoms = document.getElementById('second_name').value;
+        var Edat = document.getElementById('age').value;
+        var Sexe = document.getElementById('gender').value;
+
+        if (Nom == "" || Cognoms == "" || Edat == "" || Sexe == "" || Curs == ""){
+            document.getElementById('alert').classList.remove('d-none');
+            return false
+        }
+        else if(Curs == 1){
+            form.action = "infantil.html";
+            return true
+        }
+        else if(Curs == 2){
+            form.action = "primaria.html";
+            return true
+        }
+        else if(Curs == 3 || Curs == 4){
+            form.action = "secundaria_bat.html";
+            return true
+        }
+        else{
+            document.getElementById('alert').classList.remove('d-none');
+            return false
+        }
+    }
+</script>
+
+<footer>
+
+</footer>
+
+</html>
