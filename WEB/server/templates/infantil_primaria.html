@@ -1,285 +1,260 @@
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<html style="background-color: #A9F0BA;">
-<head>
-    <title>Formulari</title>
-    <link rel="icon" type="image/gif/png" href="{{ url_for('static' , filename='images/title_img.jpg')}}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="pt-4 ps-5 pe-5 mb-1 border rounded col-md-8" style="background-color: #237A2C;">
-                <h1 class="text-light text-center">Formulari de satisfacció</h1>
-                <p class="text-light text-center">Benvinguts al formulari de satisfacció de l'activitat realitzada. Esperem que us hagui agradat i ens doneu una bona valoració!</p>
-            </div>
-            <div class="col-sm-2"></div>
+{% extends "base.html" %}
+{% block title %}Formulari 1{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row mt-1">
+        <div class="col-0 col-md-2">
+        </div>
+        <div class="col-12 col-md-8 bg-light border rounded border-info">
+            <form class="form-horizontal" id="formulari_inf_prim" method="post">
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">Estaves impacient per realitzar l’activitat?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="radio" class="btn-check" name="question1" id="option01" value="1" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option01">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                        </label>
+                        <input type="radio" class="btn-check" name="question1" id="option02" value="2" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option02">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                        </label>
+                        <input type="radio" class="btn-check" name="question1" id="option03" value="3" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option03">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                        </label>
+                        <input type="radio" class="btn-check" name="question1" id="option04" value="4" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option04">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                        </label>
+                        <input type="radio" class="btn-check" name="question1" id="option05" value="5" autocomplete="off" checked />
+                        <label class="btn btn-success col-2" for="option05">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">T’ha agradat l’activitat?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="radio" class="btn-check" name="question2" id="option11" value="1" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option11">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                        </label>
+                        <input type="radio" class="btn-check" name="question2" id="option12" value="2" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option12">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                        </label>
+                        <input type="radio" class="btn-check" name="question2" id="option13" value="3" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option13">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                        </label>
+                        <input type="radio" class="btn-check" name="question2" id="option14" value="4" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option14">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                        </label>
+                        <input type="radio" class="btn-check" name="question2" id="option15" value="5" autocomplete="off" checked />
+                        <label class="btn btn-success col-2" for="option15">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">T’hauria agradat tenir més temps?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="radio" class="btn-check" name="question3" id="option21" value="1" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option21">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                        </label>
+                        <input type="radio" class="btn-check" name="question3" id="option22" value="2" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option22">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                        </label>
+                        <input type="radio" class="btn-check" name="question3" id="option23" value="3" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option23">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                        </label>
+                        <input type="radio" class="btn-check" name="question3" id="option24" value="4" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option24">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                        </label>
+                        <input type="radio" class="btn-check" name="question3" id="option25" value="5" autocomplete="off" checked />
+                        <label class="btn btn-success col-2" for="option25">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">Ho has trobat fàcil?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="radio" class="btn-check" name="question4" id="option31" value="1" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option31">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                        </label>
+                        <input type="radio" class="btn-check" name="question4" id="option32" value="2" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option32">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                        </label>
+                        <input type="radio" class="btn-check" name="question4" id="option33" value="3" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option33">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                        </label>
+                        <input type="radio" class="btn-check" name="question4" id="option34" value="4" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option34">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                        </label>
+                        <input type="radio" class="btn-check" name="question4" id="option35" value="5" autocomplete="off" checked />
+                        <label class="btn btn-success col-2" for="option35">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">Havies fet robòtica abans?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="radio" class="btn-check" name="question5" id="option41" value="1" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option41">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                        </label>
+                        <input type="radio" class="btn-check" name="question5" id="option42" value="2" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option42">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                        </label>
+                        <input type="radio" class="btn-check" name="question5" id="option43" value="3" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option43">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                        </label>
+                        <input type="radio" class="btn-check" name="question5" id="option44" value="4" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option44">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                        </label>
+                        <input type="radio" class="btn-check" name="question5" id="option45" value="5" autocomplete="off" checked />
+                        <label class="btn btn-success col-2" for="option45">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">Vols repetir una nova activitat com aquesta amb el Qui-Bot?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="radio" class="btn-check" name="question6" id="option51" value="1" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option51">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                        </label>
+                        <input type="radio" class="btn-check" name="question6" id="option52" value="2" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option52">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                        </label>
+                        <input type="radio" class="btn-check" name="question6" id="option53" value="3" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option53">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                        </label>
+                        <input type="radio" class="btn-check" name="question6" id="option54" value="4" autocomplete="off"/>
+                        <label class="btn btn-success col-2" for="option54">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                        </label>
+                        <input type="radio" class="btn-check" name="question6" id="option55" value="5" autocomplete="off" checked />
+                        <label class="btn btn-success col-2" for="option55">
+                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">TRIA EL TEU JOC PREFERIT:</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="btn-group">
+                        <input type="radio" class="btn-check" name="question7" id="option61" value="JOCS DE TAULA" autocomplete="off" checked />
+                        <label class="btn btn-success" for="option61">JOCS DE TAULA</label>
+                        
+                        <input type="radio" class="btn-check" name="question7" id="option62" value="VIDEOJOCS" autocomplete="off" />
+                        <label class="btn btn-success" for="option62">VIDEOJOCS</label>
+                        
+                        <input type="radio" class="btn-check" name="question7" id="option63" value="ESPORTS" autocomplete="off" />
+                        <label class="btn btn-success" for="option63">ESPORTS</label>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">QUINA ASSIGNATURA T’AGRADA MÉS AL COLE?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" name="question8" id="option71">
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">PER QUÈ T’HAS APUNTAT A AQUESTA JORNADA?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" name="question9" id="option81">
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12">
+                        <label class="mb-2 h5" for="name">QUÈ ÉS EL QUE MÉS T’HA AGRADAT AVUI?</label>
+                        <audio id="audio_play1">
+                            <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
+                        </audio>
+                        <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />                      
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" name="question10" id="option91">
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn text-light m-3" style="background-color: #237A2C;">Continua 🢂</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-0 col-md-2">
         </div>
     </div>
-</header>
-<body style="background-color: #A9F0BA;">
-    <div class="container">
-        <div class="row mt-1">
-            <div class="col-0 col-md-2">
-            </div>
-            <div class="col-12 col-md-8 bg-light border rounded border-info">
-                <form class="form-horizontal" method="post">
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">Estaves impacient per realitzar l’activitat?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="radio" class="btn-check" name="question1" id="option01" value="1" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option01">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                            </label>
-                            <input type="radio" class="btn-check" name="question1" id="option02" value="2" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option02">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                            </label>
-                            <input type="radio" class="btn-check" name="question1" id="option03" value="3" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option03">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                            </label>
-                            <input type="radio" class="btn-check" name="question1" id="option04" value="4" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option04">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                            </label>
-                            <input type="radio" class="btn-check" name="question1" id="option05" value="5" autocomplete="off" checked />
-                            <label class="btn btn-success col-2" for="option05">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">T’ha agradat l’activitat?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="radio" class="btn-check" name="question2" id="option11" value="1" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option11">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                            </label>
-                            <input type="radio" class="btn-check" name="question2" id="option12" value="2" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option12">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                            </label>
-                            <input type="radio" class="btn-check" name="question2" id="option13" value="3" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option13">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                            </label>
-                            <input type="radio" class="btn-check" name="question2" id="option14" value="4" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option14">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                            </label>
-                            <input type="radio" class="btn-check" name="question2" id="option15" value="5" autocomplete="off" checked />
-                            <label class="btn btn-success col-2" for="option15">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">T’hauria agradat tenir més temps?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="radio" class="btn-check" name="question3" id="option21" value="1" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option21">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                            </label>
-                            <input type="radio" class="btn-check" name="question3" id="option22" value="2" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option22">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                            </label>
-                            <input type="radio" class="btn-check" name="question3" id="option23" value="3" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option23">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                            </label>
-                            <input type="radio" class="btn-check" name="question3" id="option24" value="4" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option24">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                            </label>
-                            <input type="radio" class="btn-check" name="question3" id="option25" value="5" autocomplete="off" checked />
-                            <label class="btn btn-success col-2" for="option25">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">Ho has trobat fàcil?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="radio" class="btn-check" name="question4" id="option31" value="1" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option31">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                            </label>
-                            <input type="radio" class="btn-check" name="question4" id="option32" value="2" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option32">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                            </label>
-                            <input type="radio" class="btn-check" name="question4" id="option33" value="3" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option33">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                            </label>
-                            <input type="radio" class="btn-check" name="question4" id="option34" value="4" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option34">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                            </label>
-                            <input type="radio" class="btn-check" name="question4" id="option35" value="5" autocomplete="off" checked />
-                            <label class="btn btn-success col-2" for="option35">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">Havies fet robòtica abans?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="radio" class="btn-check" name="question5" id="option41" value="1" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option41">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                            </label>
-                            <input type="radio" class="btn-check" name="question5" id="option42" value="2" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option42">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                            </label>
-                            <input type="radio" class="btn-check" name="question5" id="option43" value="3" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option43">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                            </label>
-                            <input type="radio" class="btn-check" name="question5" id="option44" value="4" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option44">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                            </label>
-                            <input type="radio" class="btn-check" name="question5" id="option45" value="5" autocomplete="off" checked />
-                            <label class="btn btn-success col-2" for="option45">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">Vols repetir una nova activitat com aquesta amb el Qui-Bot?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="radio" class="btn-check" name="question6" id="option51" value="1" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option51">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                            </label>
-                            <input type="radio" class="btn-check" name="question6" id="option52" value="2" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option52">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                            </label>
-                            <input type="radio" class="btn-check" name="question6" id="option53" value="3" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option53">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                            </label>
-                            <input type="radio" class="btn-check" name="question6" id="option54" value="4" autocomplete="off"/>
-                            <label class="btn btn-success col-2" for="option54">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                            </label>
-                            <input type="radio" class="btn-check" name="question6" id="option55" value="5" autocomplete="off" checked />
-                            <label class="btn btn-success col-2" for="option55">
-                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">TRIA EL TEU JOC PREFERIT:</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="btn-group">
-                            <input type="radio" class="btn-check" name="question7" id="option61" value="JOCS DE TAULA" autocomplete="off" checked />
-                            <label class="btn btn-success" for="option61">JOCS DE TAULA</label>
-                          
-                            <input type="radio" class="btn-check" name="question7" id="option62" value="VIDEOJOCS" autocomplete="off" />
-                            <label class="btn btn-success" for="option62">VIDEOJOCS</label>
-                          
-                            <input type="radio" class="btn-check" name="question7" id="option63" value="ESPORTS" autocomplete="off" />
-                            <label class="btn btn-success" for="option63">ESPORTS</label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">QUINA ASSIGNATURA T’AGRADA MÉS AL COLE?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" name="question8" id="option71">
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">PER QUÈ T’HAS APUNTAT A AQUESTA JORNADA?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" name="question9" id="option81">
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mb-3 row align-items-end">
-                        <div class="col-12">
-                            <label class="mb-2 h5" for="name">QUÈ ÉS EL QUE MÉS T’HA AGRADAT AVUI?</label>
-                            <audio id="audio_play1">
-                                <source src="{{ url_for('static' , filename='audios/pregunta_1.m4a')}}" type="audio/mpeg" />
-                            </audio>
-                            <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />                      
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" name="question10" id="option91">
-                        </div>
-                    </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn text-light m-3" style="background-color: #237A2C;">Continua 🢂</button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-0 col-md-2">
-            </div>
-        </div>
-    </div>
-
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-<footer>
-
-</footer>
+</div>
+{% endblock %}
