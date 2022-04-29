@@ -1,34 +1,16 @@
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<html style="background-color: #A9F0BA;">
-<head>
-    <title>Formulari</title>
-    <link rel="icon" type="image/gif/png" href="{{ url_for('static' , filename='images/title_img.jpg')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="pt-4 ps-5 pe-5 mb-1 border rounded col-sm-6" style="background-color: #237A2C;">
-                <h1 class="text-light text-center">Formulari de satisfacció</h1>
-                <p class="text-light text-center">Heu completat el formulari de satisfacció. Moltes gràcies per la vostra dedicació i esperem que torneu aviat.</p>
-            </div>
-            <div class="col-sm-3"></div>
+{% extends "base.html" %}
+{% block title %}Formulari 3{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row mt-1">
+        <div class="col-0 col-md-2">
+        </div>
+        <div class="col-12 col-md-8 bg-light border rounded border-info">
+            <p class=" h4 text-center">Moltes gràcies per completar el formulari de satisfacció.</p>
+            <p class=" h4 text-center">Esperem que us hagui agradat l'activitat i que torneu molt aviat!</p>
+        </div>
+        <div class="col-0 col-md-2">
         </div>
     </div>
-</header>
-<body style="background-color: #A9F0BA;">
-    <div class="container">
-        <div class="row mt-1">
-        </div>
-    </div>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<footer>
-
-</footer>
-
-</html>
+</div>
+{% endblock %}
