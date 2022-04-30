@@ -1,13 +1,19 @@
-from unicodedata import name
 from flask import Flask, render_template, url_for, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 import os
+from bd import *
 
 from sqlalchemy import true
 
+db = SQLAlchemy()
 
 app = Flask(__name__)
+
 app.secret_key = "Ofort"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///server/dades.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+db.init_app(app)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -16,12 +22,13 @@ def index():
         second_name = request.form['second_name']
         age = request.form['age']
         school = request.form['school']
-        curs = request.form['curs']
+        course = request.form['course']
         gender = request.form['gender']
-        session["user"] = name+second_name
-        if (curs == "1" or curs == "2"):
+        
+        session["id"] = 1
+        if (course == "1" or course == "2"):
             return redirect(url_for('infantil_primaria'))
-        elif (curs == "3" or curs == "4"):
+        elif (course == "3" or course == "4"):
             return redirect(url_for('secundaria_bat'))
         else:
             return render_template("index.html")
@@ -29,8 +36,8 @@ def index():
 
 @app.route("/infantil_primaria", methods=["GET", "POST"])
 def infantil_primaria():
-    if "user" in session:
-        user = session["user"]
+    if "id" in session:
+        user = session["id"]
         if request.method == 'POST':
             question1 = request.form['question1']
             question2 = request.form['question2']
@@ -49,7 +56,8 @@ def infantil_primaria():
 
 @app.route("/secundaria_bat", methods=["GET", "POST"])
 def secundaria_bat():
-    if "user" in session:
+    if "id" in session:
+        user = session["id"]
         if request.method == 'POST':
             question1 = request.form['question1']
             question2 = request.form['question2']
@@ -70,5 +78,20 @@ def secundaria_bat():
 def end():
     return render_template("end.html")
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
+
+@app.route("/signin", methods=["GET", "POST"])
+def signin():
+    return render_template("signin.html")
+
+
 if __name__ == "__main__":
+
+    # Inicialitza la base de dades
+    db = sqlite3.connect('server/dades.db')
+    cursor = db.cursor()
+    init_bd()
+
     app.run(debug=true)
