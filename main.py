@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from bd import *
 
-from sqlalchemy import null, true
+from sqlalchemy import true
 
 db = SQLAlchemy()
 
