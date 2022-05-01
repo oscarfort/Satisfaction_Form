@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}Sign In{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row mt-1">
+        <div class="col-0 col-md-2">
+            <a href="{{ url_for('index') }}">
+                <button type="button" class="btn btn-primary" style="background-color: #237A2C;">
+                    🢀 Torna
+                </button>
+            </a>
+        </div>
+        <div class="col-12 col-md-8 bg-light border rounded border-info">
+            <form class="form-horizontal" id="signin" method="post">
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-12 col-md-3">
+                        <label class="mb-0 h5" for="name">Nom:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" class="form-control" id="name" placeholder="Nom" name="name" required>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-sm-3">
+                        <label class="mb-0 h5" for="second_name">Cognoms:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="second_name" placeholder="Cognoms" name="second_name" required>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-sm-3">
+                        <label class="mb-0 h5" for="email">Email:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-sm-3">
+                        <label class="mb-0 h5" for="password">Contrasenya:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password" placeholder="Contrasenya" name="password" required>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-sm-3">
+                        <label class="mb-0 h5" for="password2">Repetir Contrasenya:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control border" id="password2" placeholder="Repetir Contrasenya" name="password2" onkeyup='check();' required>
+                        <span id="message"></span>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-sm-3">
+                        <label class="mb-0 h5" for="school">Escola/Institut:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="school" placeholder="Escola/Institut" name="school" required>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3 row align-items-end">
+                    <div class="col-sm-3">
+                        <label class="mb-0 h5" for="gender">Gènere:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select class="custom-select col-md-3" id="gender" name="gender" required>
+                            <option value="" selected>Tria...</option>
+                            <option value="1">Masculí</option>
+                            <option value="2">Femení</option>
+                            <option value="3">No definit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-2 mb-2 text-danger text-center">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <span class="border border-danger rounded">{{ message }}</span>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                </div>
+                <div class="row mb-1">
+                    <div class="col-4">
+                        <a href="{{ url_for('login') }}">
+                            <button type="button" class="btn text-light" style="background-color: #237A2C;">Iniciar Sessió</button>
+                        </a>
+                    </div>
+                    <div class="col-5"></div>
+                    <div class="col-3">
+                        <button type="submit" class="btn text-light" style="background-color: #237A2C;">Continua 🢂</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-0 col-md-2">
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var check = function() {
+        if (document.getElementById('password').value == document.getElementById('password2').value) {
+            document.getElementById("password2").setAttribute('style', 'border:2px solid #81E04F !important');
+        } else {
+            document.getElementById("password2").setAttribute('style', 'border:2px solid #FF382E !important');
+        }
+    }
+
+    function validatepass() {
+        var Password = document.getElementById('password').value;
+        var Password2 = document.getElementById('password2').value;
+        if(Password != Password2) 
+        {
+            alert("passwords don't match");
+            return false;
+        }
+    return true;
+    }
+</script>
+{% endblock %}

@@ -63,12 +63,96 @@ def init_bd():
     NAME CHAR(20) NOT NULL,
     SECOND_NAME CHAR(20) NOT NULL,
     SCHOOL CHAR(30) NOT NULL,
-    COURSE CHAR(30) NOT NULL,
     GENDER CHAR(30) NOT NULL,
     ROLE CHAR(30) NOT NULL,
     PRIMARY KEY(EMAIL),
     FOREIGN KEY (SCHOOL) REFERENCES SCHOOLS(SCHOOL_NAME)
     )""")
+
+def insert_alumne(id, name, second_name, age, school, course, gender):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+
+    try:
+        cursor.execute("""INSERT INTO ALUMNE (ID, NAME, SECOND_NAME, AGE, SCHOOL, COURSE, GENDER) VALUES(?,?,?,?,?,?,?)""", (id, name, second_name, age, school, course, gender))
+        db.commit()
+    except:
+        pass
+    return 0
+
+def insert_inf_pri(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+
+    try:
+        cursor.execute("""INSERT INTO PREGUNTES_INF_PRI (ID,PREGUNTA_1,PREGUNTA_2,PREGUNTA_3,PREGUNTA_4,PREGUNTA_5,PREGUNTA_6,PREGUNTA_7,PREGUNTA_8,PREGUNTA_9,PREGUNTA_10) VALUES(?,?,?,?,?,?,?,?,?,?,?)""", (id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10))
+        db.commit()
+    except:
+        pass
+    return 0
+
+def insert_sec_bat(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+
+    try:
+        cursor.execute("""INSERT INTO PREGUNTES_SEC_BAT (ID,PREGUNTA_1,PREGUNTA_2,PREGUNTA_3,PREGUNTA_4,PREGUNTA_5,PREGUNTA_6,PREGUNTA_7,PREGUNTA_8,PREGUNTA_9,PREGUNTA_10) VALUES(?,?,?,?,?,?,?,?,?,?,?)""", (id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10))
+        db.commit()
+    except:
+        pass
+    return 0
+
+def insert_school(school_name):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+
+    try:
+        cursor.execute("""INSERT INTO SCHOOLS (SCHOOL_NAME) VALUES(?)""", (school_name))
+        db.commit()
+    except:
+        pass
+    return 0
+
+def create_user(email, password, name, second_name, school, gender, role):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+
+    try:
+        cursor.execute("""INSERT INTO LOGGED_USERS (EMAIL, PASSWORD, NAME, SECOND_NAME, SCHOOL, GENDER, ROLE) VALUES(?,?,?,?,?,?,?)""", (email, password, name, second_name, school, gender, role))
+        db.commit()
+    except:
+        pass
+    return 0
+
+def request_user(email, password):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+    
+    cursor.execute("""SELECT EMAIL FROM LOGGED_USERS WHERE EMAIL = ? AND PASSWORD = ? """, (email, password))
+    for row in cursor:
+        if ('{0}'.format(row[0])) == email:
+            return True
+    return False
+
+def find_user(email):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+    
+    cursor.execute("""SELECT EMAIL FROM LOGGED_USERS WHERE EMAIL = ?""", (email,))
+    for row in cursor:
+        if ('{0}'.format(row[0])) == email:
+            return True
+    return False
+
+def last_alumne_id():
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+    
+    cursor.execute("""SELECT ID FROM ALUMNE ORDER BY ID DESC LIMIT 1""")
+    for row in cursor:
+        id = '{0}'.format(row[0])
+        return id
+    return 0
 
     # cursor.execute("""CREATE TRIGGER befo_insert BEFORE INSERT ON emp_details
     # BEGIN

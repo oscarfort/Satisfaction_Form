@@ -4,15 +4,22 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-0 col-md-3">
+            <div class="mt-2">
+                <a href="{{ url_for('index') }}">
+                    <button type="button" class="btn btn-primary" style="background-color: #237A2C;">
+                        🢀 Torna
+                    </button>
+                </a>
+            </div>
         </div>
         <div class="col-12 col-md-6 bg-light border rounded border-info">
             <form class="form-horizontal" id="login" method="post">
                 <div class="form-group mt-3 mb-3 row align-items-end">
                     <div class="col-12 col-md-3">
-                        <label class="mb-0 h5" for="user">Ususari/Email:</label>
+                        <label class="mb-0 h5" for="email">Email:</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" class="form-control" id="user" placeholder="Ususari/Email" name="user">
+                        <input type="text" class="form-control" id="email" placeholder="Email" name="email">
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -23,8 +30,14 @@
                         <input type="password" class="form-control" id="password" placeholder="Contrasenya" name="password">
                     </div>
                 </div>
-                <div class="alert alert-warning d-none" id="alert">
-                    <strong>Warning!</strong> Falten dades per afegir!
+                <div class="mt-2 mb-2 text-danger text-center">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <span class="border border-danger rounded">{{ message }}</span>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
                 </div>
                 <div class="row mb-1">
                     <div class="col-2">

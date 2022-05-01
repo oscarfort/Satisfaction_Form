@@ -12,7 +12,7 @@
             <div class="col-md-2">
                 <div class="mt-2">
                     <a href="{{ url_for('login') }}">
-                        <button type="button" class="btn btn-primary" style="background-color: #237A2C;">
+                        <button type="button" class="btn btn-success" style="background-color: #237A2C;">
                             LOGIN
                         </button>
                     </a>
@@ -27,14 +27,14 @@
     <div class="row mt-1">
         <div class="col-0 col-md-2">
         </div>
-        <div class="col-12 col-md-8 bg-light border rounded border-info">
+        <div class="col-12 col-md-8 bg-light border rounded border-success">
             <form class="form-horizontal" id="formulari_generic" method="post">
                 <div class="form-group mt-3 mb-3 row align-items-end">
                     <div class="col-12 col-md-3">
                         <label class="mb-0 h5" for="name">Nom:</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" class="form-control" id="name" placeholder="Nom" name="name">
+                        <input type="text" class="form-control" id="name" placeholder="Nom" name="name" required>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -42,7 +42,7 @@
                         <label class="mb-0 h5" for="second_name">Cognoms:</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="second_name" placeholder="Cognoms" name="second_name">
+                        <input type="text" class="form-control" id="second_name" placeholder="Cognoms" name="second_name" required>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -50,7 +50,7 @@
                         <label class="mb-0 h5" for="age">Edat:</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="age" placeholder="Edat" name="age">
+                        <input type="number" class="form-control" id="age" placeholder="Edat" name="age" required>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -58,7 +58,7 @@
                         <label class="mb-0 h5" for="school">Escola/Institut:</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="school" placeholder="Escola/Institut" name="school">
+                        <input type="text" class="form-control" id="school" placeholder="Escola/Institut" name="school" required>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -66,8 +66,8 @@
                         <label class="mb-0 h5" for="course">Curs:</label>
                     </div>
                     <div class="col-sm-9">
-                        <select class="custom-select col-md-3" id="course" name="course">
-                            <option selected>Tria...</option>
+                        <select class="custom-select col-md-3" id="course" name="course" required>
+                            <option value="" selected>Tria...</option>
                             <option value="1">Infantil</option>
                             <option value="2">Primària</option>
                             <option value="3">Secundària</option>
@@ -80,17 +80,14 @@
                         <label class="mb-0 h5" for="gender">Gènere:</label>
                     </div>
                     <div class="col-sm-9">
-                        <select class="custom-select col-md-3" id="gender" name="gender">
-                            <option selected>Tria...</option>
+                        <select class="custom-select col-md-3" id="gender" name="gender" required>
+                            <option value="" selected>Tria...</option>
                             <option value="1">Masculí</option>
                             <option value="2">Femení</option>
                             <option value="3">No definit</option>
                         </select>
                     </div>
                 </div>
-                <div class="alert alert-warning d-none" id="alert">
-                    <strong>Warning!</strong> Falten dades per afegir!
-                    </div>
                 <div class="text-end">
                     <button type="submit" class="btn text-light m-3" style="background-color: #237A2C;">Continua 🢂</button>
                 </div>
@@ -100,4 +97,36 @@
         </div>
     </div>
 </div>
+
+<!-- <script>
+    function validateMyForm(form) {
+        var Curs = document.getElementById('curs').value;
+        var Nom = document.getElementById('name').value;
+        var Cognoms = document.getElementById('second_name').value;
+        var Edat = document.getElementById('age').value;
+        var Sexe = document.getElementById('gender').value;
+
+        if (Nom == "" || Cognoms == "" || Edat == "" || Sexe == "" || Curs == ""){
+            document.getElementById('alert').classList.remove('d-none');
+            return false
+        }
+        else if(Curs == 1){
+            form.action = "infantil.html";
+            return true
+        }
+        else if(Curs == 2){
+            form.action = "primaria.html";
+            return true
+        }
+        else if(Curs == 3 || Curs == 4){
+            form.action = "secundaria_bat.html";
+            return true
+        }
+        else{
+            document.getElementById('alert').classList.remove('d-none');
+            return false
+        }
+    }
+</script> -->
+
 {% endblock %}
