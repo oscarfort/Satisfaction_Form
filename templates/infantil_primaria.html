@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Formulari 1{% endblock %}
+{% block title %}Formulari Inf-Pri{% endblock %}
+
 {% block header %}
 <header>
     <div class="container">
@@ -15,6 +16,7 @@
     </div>
 </header>
 {% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row mt-1">
@@ -30,27 +32,39 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="radio" class="btn-check" name="question1" id="option01" value="1" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option01">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                        </label>
-                        <input type="radio" class="btn-check" name="question1" id="option02" value="2" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option02">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                        </label>
-                        <input type="radio" class="btn-check" name="question1" id="option03" value="3" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option03">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                        </label>
-                        <input type="radio" class="btn-check" name="question1" id="option04" value="4" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option04">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                        </label>
-                        <input type="radio" class="btn-check" name="question1" id="option05" value="5" autocomplete="off" checked />
-                        <label class="btn btn-success col-2" for="option05">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                        </label>
+                    <div class="row col-12">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question1" id="option01" value="1" autocomplete="off"/>
+                            <label class="btn btn-success" for="option01">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question1" id="option02" value="2" autocomplete="off"/>
+                            <label class="btn btn-success" for="option02">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question1" id="option03" value="3" autocomplete="off"/>
+                            <label class="btn btn-success" for="option03">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question1" id="option04" value="4" autocomplete="off"/>
+                            <label class="btn btn-success" for="option04">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question1" id="option05" value="5" autocomplete="off" checked />
+                            <label class="btn btn-success" for="option05">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                            </label>
+                        </div>
+                        <div class="col-1"></div>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -61,27 +75,39 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="radio" class="btn-check" name="question2" id="option11" value="1" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option11">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                        </label>
-                        <input type="radio" class="btn-check" name="question2" id="option12" value="2" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option12">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                        </label>
-                        <input type="radio" class="btn-check" name="question2" id="option13" value="3" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option13">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                        </label>
-                        <input type="radio" class="btn-check" name="question2" id="option14" value="4" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option14">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                        </label>
-                        <input type="radio" class="btn-check" name="question2" id="option15" value="5" autocomplete="off" checked />
-                        <label class="btn btn-success col-2" for="option15">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                        </label>
+                    <div class="row col-12">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question2" id="option11" value="1" autocomplete="off"/>
+                            <label class="btn btn-success" for="option11">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question2" id="option12" value="2" autocomplete="off"/>
+                            <label class="btn btn-success" for="option12">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question2" id="option13" value="3" autocomplete="off"/>
+                            <label class="btn btn-success" for="option13">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question2" id="option14" value="4" autocomplete="off"/>
+                            <label class="btn btn-success" for="option14">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question2" id="option15" value="5" autocomplete="off" checked />
+                            <label class="btn btn-success" for="option15">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                            </label>
+                        </div>
+                        <div class="col-1"></div>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -92,27 +118,39 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="radio" class="btn-check" name="question3" id="option21" value="1" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option21">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                        </label>
-                        <input type="radio" class="btn-check" name="question3" id="option22" value="2" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option22">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                        </label>
-                        <input type="radio" class="btn-check" name="question3" id="option23" value="3" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option23">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                        </label>
-                        <input type="radio" class="btn-check" name="question3" id="option24" value="4" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option24">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                        </label>
-                        <input type="radio" class="btn-check" name="question3" id="option25" value="5" autocomplete="off" checked />
-                        <label class="btn btn-success col-2" for="option25">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                        </label>
+                    <div class="row col-12">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question3" id="option21" value="1" autocomplete="off"/>
+                            <label class="btn btn-success" for="option21">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question3" id="option22" value="2" autocomplete="off"/>
+                            <label class="btn btn-success" for="option22">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question3" id="option23" value="3" autocomplete="off"/>
+                            <label class="btn btn-success" for="option23">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question3" id="option24" value="4" autocomplete="off"/>
+                            <label class="btn btn-success" for="option24">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question3" id="option25" value="5" autocomplete="off" checked />
+                            <label class="btn btn-success" for="option25">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                            </label>
+                        </div>
+                        <div class="col-1"></div>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -123,27 +161,39 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="radio" class="btn-check" name="question4" id="option31" value="1" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option31">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                        </label>
-                        <input type="radio" class="btn-check" name="question4" id="option32" value="2" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option32">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                        </label>
-                        <input type="radio" class="btn-check" name="question4" id="option33" value="3" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option33">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                        </label>
-                        <input type="radio" class="btn-check" name="question4" id="option34" value="4" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option34">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                        </label>
-                        <input type="radio" class="btn-check" name="question4" id="option35" value="5" autocomplete="off" checked />
-                        <label class="btn btn-success col-2" for="option35">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                        </label>
+                    <div class="row col-12">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question4" id="option31" value="1" autocomplete="off"/>
+                            <label class="btn btn-success" for="option31">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question4" id="option32" value="2" autocomplete="off"/>
+                            <label class="btn btn-success" for="option32">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question4" id="option33" value="3" autocomplete="off"/>
+                            <label class="btn btn-success" for="option33">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question4" id="option34" value="4" autocomplete="off"/>
+                            <label class="btn btn-success" for="option34">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question4" id="option35" value="5" autocomplete="off" checked />
+                            <label class="btn btn-success" for="option35">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                            </label>
+                        </div>
+                        <div class="col-1"></div>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -154,27 +204,39 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="radio" class="btn-check" name="question5" id="option41" value="1" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option41">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                        </label>
-                        <input type="radio" class="btn-check" name="question5" id="option42" value="2" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option42">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                        </label>
-                        <input type="radio" class="btn-check" name="question5" id="option43" value="3" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option43">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                        </label>
-                        <input type="radio" class="btn-check" name="question5" id="option44" value="4" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option44">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                        </label>
-                        <input type="radio" class="btn-check" name="question5" id="option45" value="5" autocomplete="off" checked />
-                        <label class="btn btn-success col-2" for="option45">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                        </label>
+                    <div class="row col-12">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question5" id="option41" value="1" autocomplete="off"/>
+                            <label class="btn btn-success" for="option41">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question5" id="option42" value="2" autocomplete="off"/>
+                            <label class="btn btn-success" for="option42">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question5" id="option43" value="3" autocomplete="off"/>
+                            <label class="btn btn-success" for="option43">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question5" id="option44" value="4" autocomplete="off"/>
+                            <label class="btn btn-success" for="option44">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question5" id="option45" value="5" autocomplete="off" checked />
+                            <label class="btn btn-success" for="option45">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                            </label>
+                        </div>
+                        <div class="col-1"></div>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -185,30 +247,42 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="radio" class="btn-check" name="question6" id="option51" value="1" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option51">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
-                        </label>
-                        <input type="radio" class="btn-check" name="question6" id="option52" value="2" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option52">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
-                        </label>
-                        <input type="radio" class="btn-check" name="question6" id="option53" value="3" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option53">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
-                        </label>
-                        <input type="radio" class="btn-check" name="question6" id="option54" value="4" autocomplete="off"/>
-                        <label class="btn btn-success col-2" for="option54">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
-                        </label>
-                        <input type="radio" class="btn-check" name="question6" id="option55" value="5" autocomplete="off" checked />
-                        <label class="btn btn-success col-2" for="option55">
-                            <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
-                        </label>
+                    <div class="row col-12">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question6" id="option51" value="1" autocomplete="off"/>
+                            <label class="btn btn-success" for="option51">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/angry.png')}}" alt="angry">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question6" id="option52" value="2" autocomplete="off"/>
+                            <label class="btn btn-success" for="option52">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/sad.png')}}" alt="sad">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question6" id="option53" value="3" autocomplete="off"/>
+                            <label class="btn btn-success" for="option53">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/medium.png')}}" alt="medium">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question6" id="option54" value="4" autocomplete="off"/>
+                            <label class="btn btn-success" for="option54">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/happy.png')}}" alt="happy">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" class="btn-check" name="question6" id="option55" value="5" autocomplete="off" checked />
+                            <label class="btn btn-success" for="option55">
+                                <img class="col-12" src="{{ url_for('static' , filename='images/love.png')}}" alt="love">
+                            </label>
+                        </div>
+                        <div class="col-1"></div>
                     </div>
                 </div>
-                <div class="form-group mt-3 mb-3 row align-items-end">
+                <div class="form-group mt-3 row align-items-end">
                     <div class="col-12">
                         <label class="mb-2 h5" for="name">TRIA EL TEU JOC PREFERIT:</label>
                         <audio id="audio_play1">
@@ -218,16 +292,33 @@
                     </div>
                     <div class="btn-group">
                         <input type="radio" class="btn-check" name="question7" id="option61" value="JOCS DE TAULA" autocomplete="off" checked />
-                        <label class="btn btn-success" for="option61">JOCS DE TAULA</label>
+                        <label class="btn btn-success col-4" for="option61">
+                            <img class="col-4" src="{{ url_for('static' , filename='images/board.jpg')}}" alt="board">
+                        </label>
                         
                         <input type="radio" class="btn-check" name="question7" id="option62" value="VIDEOJOCS" autocomplete="off" />
-                        <label class="btn btn-success" for="option62">VIDEOJOCS</label>
+                        <label class="btn btn-success col-4 pt-3" for="option62">
+                            <img class="col-4" src="{{ url_for('static' , filename='images/joystick.jpg')}}" alt="joystick">
+                        </label>
                         
                         <input type="radio" class="btn-check" name="question7" id="option63" value="ESPORTS" autocomplete="off" />
-                        <label class="btn btn-success" for="option63">ESPORTS</label>
+                        <label class="btn btn-success col-4" for="option63">
+                            <img class="col-4" src="{{ url_for('static' , filename='images/ball.jpg')}}" alt="ball">
+                        </label>
                     </div>
                 </div>
-                <div class="form-group mt-3 mb-3 row align-items-end">
+                <div class="row col-12 text-center">
+                    <label class="col-4" for="option61">
+                        <p style="font-weight: bold;">JOCS DE TAULA</p> 
+                    </label>
+                    <label class="col-4" for="option62">
+                        <p style="font-weight: bold;">VIDEOJOCS</p>
+                    </label>
+                    <label class="col-4" for="option63">
+                        <p style="font-weight: bold;">ESPORTS</p>
+                    </label>
+                </div>
+                <div class="form-group mt-3 row align-items-end">
                     <div class="col-12">
                         <label class="mb-2 h5" for="name">QUINA ASSIGNATURA T’AGRADA MÉS AL COLE?</label>
                         <audio id="audio_play1">
@@ -235,9 +326,33 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" name="question8" id="option71">
+                    <div class="btn-group">
+                        <input type="radio" class="btn-check" name="question8" id="option71" value="JOCS DE TAULA" autocomplete="off" checked />
+                        <label class="btn btn-success col-4" for="option71">
+                            <img class="col-4" src="{{ url_for('static' , filename='images/mates.png')}}" alt="board">
+                        </label>
+                        
+                        <input type="radio" class="btn-check" name="question8" id="option72" value="VIDEOJOCS" autocomplete="off" />
+                        <label class="btn btn-success col-4 pt-3" for="option72">
+                            <img class="col-4" src="{{ url_for('static' , filename='images/sports.jpg')}}" alt="joystick">
+                        </label>
+                        
+                        <input type="radio" class="btn-check" name="question8" id="option73" value="ESPORTS" autocomplete="off" />
+                        <label class="btn btn-success col-4" for="option73">
+                            <img class="col-4" src="{{ url_for('static' , filename='images/llengua.jpg')}}" alt="ball">
+                        </label>
                     </div>
+                </div>
+                <div class="row col-12 text-center">
+                    <label class="col-4" for="option71">
+                        <p style="font-weight: bold;">MATES</p> 
+                    </label>
+                    <label class="col-4" for="option72">
+                        <p style="font-weight: bold;">ESPORTS</p>
+                    </label>
+                    <label class="col-4" for="option73">
+                        <p style="font-weight: bold;">LLENGUA</p>
+                    </label>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
                     <div class="col-12">
@@ -247,8 +362,8 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" name="question9" id="option81">
+                    <div class="col-12">
+                        <input class="col-12" type="text" name="question9" id="option81">
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -259,8 +374,8 @@
                         </audio>
                         <img width="40" height="40" src="{{ url_for('static' , filename='images/speaker.jpg')}}" onClick="document.getElementById('audio_play1').play();" />                      
                     </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" name="question10" id="option91">
+                    <div class="col-12">
+                        <input class="col-12" type="text" name="question10" id="option91">
                     </div>
                 </div>
                 <div class="text-end">

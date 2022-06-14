@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Sign In{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row mt-1">
-        <div class="col-0 col-md-2">
-            <a href="{{ url_for('index') }}">
-                <button type="button" class="btn btn-primary" style="background-color: #237A2C;">
-                    🢀 Torna
-                </button>
-            </a>
-        </div>
+        <div class="col-0 col-md-2"></div>
         <div class="col-12 col-md-8 bg-light border rounded border-info">
             <form class="form-horizontal" id="signin" method="post">
                 <div class="form-group mt-3 mb-3 row align-items-end">
@@ -30,10 +25,10 @@
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
                     <div class="col-sm-3">
-                        <label class="mb-0 h5" for="email">Email:</label>
+                        <label class="mb-0 h5" for="email">Email (@xtec.cat):</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+                        <input type="email" pattern="^[a-zA-Z0-9]+@xtec\.cat$" class="form-control" id="email" placeholder="Email" name="email" required>
                     </div>
                 </div>
                 <div class="form-group mt-3 mb-3 row align-items-end">
