@@ -154,11 +154,4 @@ def last_alumne_id():
         return id
     return 0
 
-    # cursor.execute("""CREATE TRIGGER befo_insert BEFORE INSERT ON emp_details
-    # BEGIN
-    # SELECT CASE 
-    # WHEN ((SELECT school_id, school_name FROM schools WHERE schools.school_id = NEW.school_id ) ISNULL) 
-    # THEN RAISE(INSERT INTO SCHOOLS VALUES(NEW.school_id, NEW.school_name))
-    # END; 
-    # END;""")
     

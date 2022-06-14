@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
-import os
 from bd import *
 
 from sqlalchemy import true
@@ -102,12 +101,12 @@ def signin():
         password = request.form['password']
         name = request.form['name']
         second_name = request.form['second_name']
-        school = request.form['school']
+        school = request.form['school'].upper()
         gender = request.form['gender']
         role ="Viewer"
         if not find_user(email):
             create_user(email, password, name, second_name, school, gender, role)
-            return redirect(url_for('graphics'))
+            return redirect(url_for('login'))
         flash('EMAIL REGISTRAT PREVIAMENT')
         return redirect(url_for('signin'))
     return render_template("signin.html")
@@ -115,7 +114,6 @@ def signin():
 @app.route("/graphics", methods=["GET", "POST"])
 def graphics():
     if "email" in session:
-        email = session["email"]
         return render_template("graphics.html")
     return redirect(url_for('login'))
 
