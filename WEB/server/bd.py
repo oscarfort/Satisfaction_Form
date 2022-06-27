@@ -1,5 +1,6 @@
 # BD
 import sqlite3
+import json
 
 def init_bd():
 
@@ -46,7 +47,7 @@ def init_bd():
     PREGUNTA_7 CHAR(30) NOT NULL,
     PREGUNTA_8 CHAR(30) NOT NULL,
     PREGUNTA_9 CHAR(30) NOT NULL,
-    PREGUNTA_10 CHAR(30) NOT NULL,
+    PREGUNTA_10 CHAR(300) NOT NULL,
     PRIMARY KEY(ID),
     FOREIGN KEY (ID) REFERENCES ALUMNE(ID)
     )""")
@@ -134,6 +135,18 @@ def request_user(email, password):
             return True
     return False
 
+def request_school(email, password):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+
+    cursor.execute("""SELECT SCHOOL, ROLE FROM LOGGED_USERS WHERE EMAIL = ? AND PASSWORD = ? """, (email, password))
+    for row in cursor:
+        if ('{0}'.format(row[1])) == "Admin":
+            return "ADMIN"
+        else:
+            return '{0}'.format(row[0])
+    return False
+
 def find_user(email):
     db = sqlite3.connect('dades.db')                                   
     cursor = db.cursor()
@@ -154,4 +167,385 @@ def last_alumne_id():
         return id
     return 0
 
+def get_data(school):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
     
+    if school == "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE)"
+    else:
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE SCHOOL = '"+school+"')"
+    cursor.execute(sql)
+    data = []
+    chart_1 = [0,0,0,0,0]
+    chart_2 = [0,0,0,0,0]
+    chart_3 = [0,0,0,0,0]
+    chart_4 = [0,0,0,0,0]
+    chart_5 = [0,0,0,0,0]
+    chart_6 = [0,0,0,0,0]
+    chart_7 = [0,0,0,0,0]
+    chart_8 = [0,0,0,0,0]
+    chart_9 = [0,0,0,0,0]
+    for row in cursor:
+        pregunta_1 = '{0}'.format(row[1])
+        if (pregunta_1 == "1"):
+            chart_1[0] += 1
+        elif (pregunta_1 == "2"):
+            chart_1[1] += 1
+        elif (pregunta_1 == "3"):
+            chart_1[2] += 1
+        elif (pregunta_1 == "4"):
+            chart_1[3] += 1
+        elif (pregunta_1 == "5"):
+            chart_1[4] += 1
+        pregunta_2 = '{0}'.format(row[2])
+        if (pregunta_2 == "1"):
+            chart_2[0] += 1
+        elif (pregunta_2 == "2"):
+            chart_2[1] += 1
+        elif (pregunta_2 == "3"):
+            chart_2[2] += 1
+        elif (pregunta_2 == "4"):
+            chart_2[3] += 1
+        elif (pregunta_2 == "5"):
+            chart_2[4] += 1
+        pregunta_3 = '{0}'.format(row[3])
+        if (pregunta_3 == "1"):
+            chart_3[0] += 1
+        elif (pregunta_3 == "2"):
+            chart_3[1] += 1
+        elif (pregunta_3 == "3"):
+            chart_3[2] += 1
+        elif (pregunta_3 == "4"):
+            chart_3[3] += 1
+        elif (pregunta_3 == "5"):
+            chart_3[4] += 1
+        pregunta_4 = '{0}'.format(row[4])
+        if (pregunta_4 == "1"):
+            chart_4[0] += 1
+        elif (pregunta_4 == "2"):
+            chart_4[1] += 1
+        elif (pregunta_4 == "3"):
+            chart_4[2] += 1
+        elif (pregunta_4 == "4"):
+            chart_4[3] += 1
+        elif (pregunta_4 == "5"):
+            chart_4[4] += 1
+        pregunta_5 = '{0}'.format(row[5])
+        if (pregunta_5 == "1"):
+            chart_5[0] += 1
+        elif (pregunta_5 == "2"):
+            chart_5[1] += 1
+        elif (pregunta_5 == "3"):
+            chart_5[2] += 1
+        elif (pregunta_5 == "4"):
+            chart_5[3] += 1
+        elif (pregunta_5 == "5"):
+            chart_5[4] += 1
+        pregunta_6 = '{0}'.format(row[6])
+        if (pregunta_6 == "1"):
+            chart_6[0] += 1
+        elif (pregunta_6 == "2"):
+            chart_6[1] += 1
+        elif (pregunta_6 == "3"):
+            chart_6[2] += 1
+        elif (pregunta_6 == "4"):
+            chart_6[3] += 1
+        elif (pregunta_6 == "5"):
+            chart_6[4] += 1
+        pregunta_7 = '{0}'.format(row[7])
+        if (pregunta_7 == "1"):
+            chart_7[0] += 1
+        elif (pregunta_7 == "2"):
+            chart_7[1] += 1
+        elif (pregunta_7 == "3"):
+            chart_7[2] += 1
+        elif (pregunta_7 == "4"):
+            chart_7[3] += 1
+        elif (pregunta_7 == "5"):
+            chart_7[4] += 1
+        pregunta_8 = '{0}'.format(row[8])
+        if (pregunta_8 == "1"):
+            chart_8[0] += 1
+        elif (pregunta_8 == "2"):
+            chart_8[1] += 1
+        elif (pregunta_8 == "3"):
+            chart_8[2] += 1
+        elif (pregunta_8 == "4"):
+            chart_8[3] += 1
+        elif (pregunta_8 == "5"):
+            chart_8[4] += 1
+        pregunta_9 = '{0}'.format(row[9])
+        if (pregunta_9 == "1"):
+            chart_9[0] += 1
+        elif (pregunta_9 == "2"):
+            chart_9[1] += 1
+        elif (pregunta_9 == "3"):
+            chart_9[2] += 1
+        elif (pregunta_9 == "4"):
+            chart_9[3] += 1
+        elif (pregunta_9 == "5"):
+            chart_9[4] += 1
+
+    data += [chart_1]
+    data += [chart_2]
+    data += [chart_3]
+    data += [chart_4]
+    data += [chart_5]
+    data += [chart_6]
+    data += [chart_7]
+    data += [chart_8]
+    data += [chart_9]
+    return data
+
+def get_data2(school):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+    
+    if school == "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE)"
+    else:
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE SCHOOL = '"+school+"')"
+    cursor.execute(sql)
+    data = []
+    chart_1 = [0,0,0,0,0]
+    chart_2 = [0,0,0,0,0]
+    chart_3 = [0,0,0,0,0]
+    chart_4 = [0,0,0,0,0]
+    chart_5 = [0,0,0,0,0]
+    chart_6 = [0,0,0,0,0]
+    chart_7 = [0,0,0]
+    chart_8 = [0,0,0]
+    for row in cursor:
+        pregunta_1 = '{0}'.format(row[1])
+        if (pregunta_1 == "1"):
+            chart_1[0] += 1
+        elif (pregunta_1 == "2"):
+            chart_1[1] += 1
+        elif (pregunta_1 == "3"):
+            chart_1[2] += 1
+        elif (pregunta_1 == "4"):
+            chart_1[3] += 1
+        elif (pregunta_1 == "5"):
+            chart_1[4] += 1
+        pregunta_2 = '{0}'.format(row[2])
+        if (pregunta_2 == "1"):
+            chart_2[0] += 1
+        elif (pregunta_2 == "2"):
+            chart_2[1] += 1
+        elif (pregunta_2 == "3"):
+            chart_2[2] += 1
+        elif (pregunta_2 == "4"):
+            chart_2[3] += 1
+        elif (pregunta_2 == "5"):
+            chart_2[4] += 1
+        pregunta_3 = '{0}'.format(row[3])
+        if (pregunta_3 == "1"):
+            chart_3[0] += 1
+        elif (pregunta_3 == "2"):
+            chart_3[1] += 1
+        elif (pregunta_3 == "3"):
+            chart_3[2] += 1
+        elif (pregunta_3 == "4"):
+            chart_3[3] += 1
+        elif (pregunta_3 == "5"):
+            chart_3[4] += 1
+        pregunta_4 = '{0}'.format(row[4])
+        if (pregunta_4 == "1"):
+            chart_4[0] += 1
+        elif (pregunta_4 == "2"):
+            chart_4[1] += 1
+        elif (pregunta_4 == "3"):
+            chart_4[2] += 1
+        elif (pregunta_4 == "4"):
+            chart_4[3] += 1
+        elif (pregunta_4 == "5"):
+            chart_4[4] += 1
+        pregunta_5 = '{0}'.format(row[5])
+        if (pregunta_5 == "1"):
+            chart_5[0] += 1
+        elif (pregunta_5 == "2"):
+            chart_5[1] += 1
+        elif (pregunta_5 == "3"):
+            chart_5[2] += 1
+        elif (pregunta_5 == "4"):
+            chart_5[3] += 1
+        elif (pregunta_5 == "5"):
+            chart_5[4] += 1
+        pregunta_6 = '{0}'.format(row[6])
+        if (pregunta_6 == "1"):
+            chart_6[0] += 1
+        elif (pregunta_6 == "2"):
+            chart_6[1] += 1
+        elif (pregunta_6 == "3"):
+            chart_6[2] += 1
+        elif (pregunta_6 == "4"):
+            chart_6[3] += 1
+        elif (pregunta_6 == "5"):
+            chart_6[4] += 1
+        pregunta_7 = '{0}'.format(row[7])
+        if (pregunta_7 == "JOCS DE TAULA"):
+            chart_7[0] += 1
+        elif (pregunta_7 == "VIDEOJOCS"):
+            chart_7[1] += 1
+        elif (pregunta_7 == "ESPORTS"):
+            chart_7[2] += 1
+        pregunta_8 = '{0}'.format(row[8])
+        if (pregunta_8 == "MATES"):
+            chart_8[0] += 1
+        elif (pregunta_8 == "ESPORTS"):
+            chart_8[1] += 1
+        elif (pregunta_8 == "LLENGUA"):
+            chart_8[2] += 1
+
+    data += [chart_1]
+    data += [chart_2]
+    data += [chart_3]
+    data += [chart_4]
+    data += [chart_5]
+    data += [chart_6]
+    data += [chart_7]
+    data += [chart_8]
+    return data
+
+def get_school(email):
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+    
+    course = []
+    cursor.execute("""SELECT DISTINCT COURSE FROM ALUMNE WHERE SCHOOL = (SELECT SCHOOL FROM LOGGED_USERS WHERE EMAIL = ?)""", (email,))
+    for row in cursor:
+        data = '{0}'.format(row[0])
+        course += [data]
+    return course
+
+def list_schools():
+    db = sqlite3.connect('dades.db')                                   
+    cursor = db.cursor()
+    
+    schools = []
+    cursor.execute("""SELECT DISTINCT SCHOOL FROM ALUMNE""")
+    for row in cursor:
+        data = '{0}'.format(row[0])
+        schools += [data]
+    return schools
+
+def create_datatable1(school):
+    db = sqlite3.connect('dades.db')
+    db.row_factory = sqlite3.Row                                 
+    cursor = db.cursor()
+
+    if school == "":
+        sql = "SELECT A.ID, NAME, SECOND_NAME, AGE, SCHOOL, COURSE, GENDER, PREGUNTA_1, PREGUNTA_2, PREGUNTA_3, PREGUNTA_4, PREGUNTA_5, PREGUNTA_6, PREGUNTA_7, PREGUNTA_8, PREGUNTA_9, PREGUNTA_10 FROM PREGUNTES_INF_PRI i, ALUMNE a WHERE a.ID = i.ID"
+    else:
+        sql = "SELECT A.ID, NAME, SECOND_NAME, AGE, SCHOOL, COURSE, GENDER, PREGUNTA_1, PREGUNTA_2, PREGUNTA_3, PREGUNTA_4, PREGUNTA_5, PREGUNTA_6, PREGUNTA_7, PREGUNTA_8, PREGUNTA_9, PREGUNTA_10 FROM PREGUNTES_INF_PRI i, ALUMNE a WHERE a.ID = i.ID AND a.SCHOOL = '"+school+"'"
+    cursor.execute(sql)
+    data = []
+    for row in cursor:
+        data.append({
+            'name': '{0}'.format(row[1]),
+            'second_name': '{0}'.format(row[2]),
+            'age': '{0}'.format(row[3]),
+            'school':'{0}'.format(row[4]),
+            'course': '{0}'.format(row[5]),
+            'gender': '{0}'.format(row[6]),
+            'pregunta_1': '{0}'.format(row[7]),
+            'pregunta_2': '{0}'.format(row[8]),
+            'pregunta_3': '{0}'.format(row[9]),
+            'pregunta_4': '{0}'.format(row[10]),
+            'pregunta_5': '{0}'.format(row[11]),
+            'pregunta_6': '{0}'.format(row[12]),
+            'pregunta_7': '{0}'.format(row[13]),
+            'pregunta_8': '{0}'.format(row[14]),
+            'pregunta_9': '{0}'.format(row[15]),
+            'pregunta_10': '{0}'.format(row[16]),
+        })
+    return data
+
+def create_datatable2(school):
+    db = sqlite3.connect('dades.db')
+    db.row_factory = sqlite3.Row                                 
+    cursor = db.cursor()
+
+    if school == "":
+        sql = "SELECT A.ID, NAME, SECOND_NAME, AGE, SCHOOL, COURSE, GENDER, PREGUNTA_1, PREGUNTA_2, PREGUNTA_3, PREGUNTA_4, PREGUNTA_5, PREGUNTA_6, PREGUNTA_7, PREGUNTA_8, PREGUNTA_9, PREGUNTA_10 FROM PREGUNTES_SEC_BAT i, ALUMNE a WHERE a.ID = i.ID"
+    else:
+        sql = "SELECT A.ID, NAME, SECOND_NAME, AGE, SCHOOL, COURSE, GENDER, PREGUNTA_1, PREGUNTA_2, PREGUNTA_3, PREGUNTA_4, PREGUNTA_5, PREGUNTA_6, PREGUNTA_7, PREGUNTA_8, PREGUNTA_9, PREGUNTA_10 FROM PREGUNTES_SEC_BAT i, ALUMNE a WHERE a.ID = i.ID AND a.SCHOOL = '"+school+"'"
+    cursor.execute(sql)
+    data = []
+    for row in cursor:
+        data.append({
+            'name': '{0}'.format(row[1]),
+            'second_name': '{0}'.format(row[2]),
+            'age': '{0}'.format(row[3]),
+            'school':'{0}'.format(row[4]),
+            'course': '{0}'.format(row[5]),
+            'gender': '{0}'.format(row[6]),
+            'pregunta_1': '{0}'.format(row[7]),
+            'pregunta_2': '{0}'.format(row[8]),
+            'pregunta_3': '{0}'.format(row[9]),
+            'pregunta_4': '{0}'.format(row[10]),
+            'pregunta_5': '{0}'.format(row[11]),
+            'pregunta_6': '{0}'.format(row[12]),
+            'pregunta_7': '{0}'.format(row[13]),
+            'pregunta_8': '{0}'.format(row[14]),
+            'pregunta_9': '{0}'.format(row[15]),
+            'pregunta_10': '{0}'.format(row[16]),
+        })
+    return data
+
+def create_datatable_admin():
+    db = sqlite3.connect('dades.db')
+    db.row_factory = sqlite3.Row                                 
+    cursor = db.cursor()
+
+    sql = "SELECT EMAIL, NAME, SECOND_NAME, GENDER, SCHOOL, ROLE FROM LOGGED_USERS"
+    cursor.execute(sql)
+    data = []
+    for row in cursor:
+        data.append({
+            'email': '{0}'.format(row[0]),
+            'name': '{0}'.format(row[1]),
+            'second_name': '{0}'.format(row[2]),
+            'gender': '{0}'.format(row[3]),
+            'school':'{0}'.format(row[4]),
+            'role': '{0}'.format(row[5]),
+            
+        })
+    return data
+
+def get_total_entries2(school):
+    db = sqlite3.connect('dades.db')
+    db.row_factory = sqlite3.Row                                 
+    cursor = db.cursor()
+
+    if school == "":
+        sql = "SELECT count(*) FROM PREGUNTES_SEC_BAT i, ALUMNE a WHERE a.ID = i.ID"
+    else:
+        sql = "SELECT count(*) FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE SCHOOL = '"+school+"')"
+    cursor.execute(sql)
+    for row in cursor:
+        return '{0}'.format(row[0])
+
+def get_total_entries1(school):
+    db = sqlite3.connect('dades.db')
+    db.row_factory = sqlite3.Row                                 
+    cursor = db.cursor()
+
+    if school == "":
+        sql = "SELECT count(*) FROM PREGUNTES_INF_PRI i, ALUMNE a WHERE a.ID = i.ID"
+    else:
+        sql = "SELECT count(*) FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE SCHOOL = '"+school+"')"
+    cursor.execute(sql)
+    for row in cursor:
+        return '{0}'.format(row[0])
+
+def get_total_entries_admin():
+    db = sqlite3.connect('dades.db')
+    db.row_factory = sqlite3.Row                                 
+    cursor = db.cursor()
+
+    sql = "SELECT count(*) FROM LOGGED_USERS"
+    cursor.execute(sql)
+    for row in cursor:
+        return '{0}'.format(row[0])

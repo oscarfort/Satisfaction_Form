@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, session, flash
+from flask import Flask, render_template, url_for, request, redirect, session, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from bd import *
 
@@ -89,6 +89,8 @@ def login():
             return redirect(url_for('login'))
         if request_user(email, password):
             session["email"] = email
+            school = request_school(email, password)
+            session["school"] = school
             return redirect(url_for('graphics'))
         flash('ERROR INICI DE SESSIÓ')
         return redirect(url_for('login'))
@@ -114,9 +116,156 @@ def signin():
 @app.route("/graphics", methods=["GET", "POST"])
 def graphics():
     if "email" in session:
-        return render_template("graphics.html")
+        email = session["email"]
+        school = session["school"]
+        if request.method == 'POST':
+            genere = request.form['genere']
+            curs = request.form['course']
+            #edats = request.form['amount']
+            if (school != "ADMIN"):
+                courses = get_school(email)
+                pri_tab = ""
+                sec_tab = ""
+                data_sec = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+                data_inf = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0],[0,0,0]]
+                if ("1" in courses) or ("2" in courses):
+                    data_inf = get_data2(school)
+                    pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
+                </li>"""
+                if ("3" in courses) or ("4" in courses):
+                    data_sec = get_data(school)
+                    sec_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Secundaria-Batxillerat</button>
+                </li>"""
+                school_select = ""
+                admin_tab = ""
+            else:
+                school_form = request.form['school']
+                list_school = list_schools()
+                data_sec = get_data("")
+                data_inf = get_data2("")
+                pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
+                </li>"""
+                sec_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Secundaria-Batxillerat</button>
+                </li>"""
+                school_select = """<div class="form-group col-md-3 mx-0 px-2">
+                    <label class="text-dark fw-bold col-12 fs-5" for="school">Escola:</label>
+                    <select class="border border-dark rounded" name="school" id="school-select" style="background-color: #A9F0BA; min-width: 100%;">
+                """
+                admin_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                    <button class="nav-link text-dark border border-dark border-2" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab" aria-controls="admin" aria-selected="false">Administrar</button>
+                </li> """
+                options_schools = """<option value="">Totes les escoles</option>\n"""
+                for i in list_school:
+                    options_schools += "<option value="+i+">"+i+"</option>\n"
+                school_select += options_schools
+                school_select += """</select>
+                </div>"""
+
+            labels = [[1,2,3,4,5],["JOCS DE TAULA","VIDEOJOCS","ESPORTS"],["MATES","ESPORTS","LLENGUA"]]
+            return render_template("graphics.html",display_email=email, display_school=school, labels=labels, data_inf=data_inf, data_sec=data_sec,school_select=school_select,admin_tab=admin_tab,pri_tab=pri_tab,sec_tab=sec_tab,sel_school=school_form,sel_course=curs,gender=genere)
+        else:
+            if (school != "ADMIN"):
+                courses = get_school(email)
+                pri_tab = ""
+                sec_tab = ""
+                data_sec = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+                data_inf = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0],[0,0,0]]
+                if ("1" in courses) or ("2" in courses):
+                    data_inf = get_data2(school)
+                    pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
+                </li>"""
+                if ("3" in courses) or ("4" in courses):
+                    data_sec = get_data(school)
+                    sec_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Secundaria-Batxillerat</button>
+                </li>"""
+                school_select = ""
+                admin_tab = ""
+            else:
+                list_school = list_schools()
+                data_sec = get_data("")
+                data_inf = get_data2("")
+                pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
+                </li>"""
+                sec_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                <button class="nav-link text-dark border border-dark border-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Secundaria-Batxillerat</button>
+                </li>"""
+                school_select = """<div class="form-group col-md-3 mx-0 px-2">
+                    <label class="text-dark fw-bold col-12 fs-5" for="school">Escola:</label>
+                    <select class="border border-dark rounded" name="school" id="school-select" style="background-color: #A9F0BA; min-width: 100%;">
+                """
+                admin_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
+                    <button class="nav-link text-dark border border-dark border-2" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab" aria-controls="admin" aria-selected="false">Administrar</button>
+                </li> """
+                options_schools = """<option value="">Totes les escoles</option>\n"""
+                for i in list_school:
+                    options_schools += "<option value="+i+">"+i+"</option>\n"
+                school_select += options_schools
+                school_select += """</select>
+                </div>"""
+
+            labels = [[1,2,3,4,5],["JOCS DE TAULA","VIDEOJOCS","ESPORTS"],["MATES","ESPORTS","LLENGUA"]]
+            return render_template("graphics.html",display_email=email, display_school=school, labels=labels, data_inf=data_inf, data_sec=data_sec,school_select=school_select,admin_tab=admin_tab,pri_tab=pri_tab,sec_tab=sec_tab)
     return redirect(url_for('login'))
 
+@app.route("/datatable1", methods=["GET", "POST"])
+def datatable1():
+    if "email" in session:
+        if request.method == 'POST':
+            school = session["school"]
+            school_var = school
+            if school == "ADMIN":
+                school_var = ""
+            data = create_datatable1(school_var)
+            total = get_total_entries1(school_var)
+
+            response = {
+                'iTotalRecords': total,
+                'iTotalDisplayRecords': total,
+                'aaData': data,
+            }
+            return jsonify(response)
+    return redirect(url_for('login'))
+
+@app.route("/datatable2", methods=["GET", "POST"])
+def datatable2():
+    if "email" in session:
+        if request.method == 'POST':
+            school = session["school"]
+            school_var = school
+            if school == "ADMIN":
+                school_var = ""
+            data = create_datatable2(school_var)
+            total = get_total_entries2(school_var)
+
+            response = {
+                'iTotalRecords': total,
+                'iTotalDisplayRecords': total,
+                'aaData': data,
+            }
+            return jsonify(response)
+    return redirect(url_for('login'))
+
+@app.route("/datatable_admin", methods=["GET", "POST"])
+def datatable_admin():
+    if "email" in session:
+        if request.method == 'POST':
+            data = create_datatable_admin()
+            total = get_total_entries_admin()
+
+            response = {
+                'iTotalRecords': total,
+                'iTotalDisplayRecords': total,
+                'aaData': data,
+            }
+            return jsonify(response)
+    return redirect(url_for('login'))
 
 if __name__ == "__main__":
 
