@@ -37,35 +37,32 @@
 
 {% block content %}
 <div class="container border border-dark border-2 rounded">
-    {{ sel_course }}
-    {{ gender }}
-    {{ sel_school }}
     <form id="filter_form" method="post">
         <div class="row" style="background-color: #237A2C;">
-            <div class="col-md-3 mx-0 px-2">
+            <div class="form-group col-md-3 mx-0 px-2">
                 <div class="col-md-12">
                     <label class="text-dark fw-bold fs-5" for="amount">Rang d'edat:</label>
-                    <input class="col-lg-7 text-dark fs-5" type="text" id="amount" readonly style="border:0; font-weight:bold; background-color: #237A2C;">
+                    <input class="col-lg-7 text-dark fs-5" name="amount" type="text" id="amount" readonly style="border:0; font-weight:bold; background-color: #237A2C;">
                 </div>
                 <div class="mt-2 mb-5 mx-2" id="slider-range"></div>
             </div>
-            <div class=" form-group col-md-2 mx-0 px-2">
+            <div class="form-group col-md-2 mx-0 px-2">
                 <label class="text-dark fw-bold col-12 fs-5" for="genere">Genere:</label>
                 <select class="border border-dark rounded" name="genere" id="genere-select" style="background-color: #A9F0BA; min-width: 100%;">
-                    <option value="">Tots els generes</option>
-                    <option value="Masculí">Masculí</option>
-                    <option value="Femení">Femení</option>
-                    <option value="No definit">No Definit</option>
+                    <option value="All" {% if sel_gender=="" %} selected="selected"{% endif %}>Tots els generes</option>
+                    <option value="Masculí" {% if sel_gender=="Masculí" %} selected="selected"{% endif %}>Masculí</option>
+                    <option value="Femení" {% if sel_gender=="Femení" %} selected="selected"{% endif %}>Femení</option>
+                    <option value="No definit" {% if sel_gender=="No definit" %} selected="selected"{% endif %}>No Definit</option>
                 </select>
             </div>
             <div class="form-group col-md-2 mx-0 px-2">
                 <label class="text-dark fw-bold col-12 fs-5" for="course">Curs:</label>
                 <select class="border border-dark rounded" name="course" id="course-select" style="background-color: #A9F0BA; min-width: 100%;">
-                    <option value="">Tots els cursos</option>
-                    <option value="Infantil">Infantil</option>
-                    <option value="Primària">Primària</option>
-                    <option value="Secundària">Secundària</option>
-                    <option value="Batxillerat">Batxillerat</option>
+                    <option value="All" {% if sel_course=="" %} selected="selected"{% endif %}>Tots els cursos</option>
+                    <option value="Infantil" {% if sel_course=="Infantil" %} selected="selected"{% endif %}>Infantil</option>
+                    <option value="Primària" {% if sel_course=="Primària" %} selected="selected"{% endif %}>Primària</option>
+                    <option value="Secundària" {% if sel_course=="Secundària" %} selected="selected"{% endif %}>Secundària</option>
+                    <option value="Batxillerat" {% if sel_course=="Batxillerat" %} selected="selected"{% endif %}>Batxillerat</option>
                 </select>
             </div>
             {{ school_select | safe }}

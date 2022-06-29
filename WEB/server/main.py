@@ -118,24 +118,33 @@ def graphics():
     if "email" in session:
         email = session["email"]
         school = session["school"]
+        min_edat = "0"
+        max_edat = "100"
         if request.method == 'POST':
             genere = request.form['genere']
+            if genere == "All":
+                genere = ""
             curs = request.form['course']
-            min_edat = "3"
-            max_edat = "19"
+            if curs == "All":
+                curs = ""
+            amount = request.form['amount']
+            amount_splitted = amount.split(" ")
+            min_edat = amount_splitted[0]
+            max_edat = amount_splitted[2]
             if (school != "ADMIN"):
+                school_form = ""
                 courses = get_school(email)
                 pri_tab = ""
                 sec_tab = ""
                 data_sec = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
                 data_inf = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0],[0,0,0]]
                 if ("Infantil" in courses) or ("Primària" in courses):
-                    data_inf = get_data2(school,genere,curs,min_edat,max_edat)
+                    data_inf = get_data_inf(school,genere,curs,min_edat,max_edat)
                     pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
                 <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
                 </li>"""
                 if ("Secundària" in courses) or ("Batxillerat" in courses):
-                    data_sec = get_data(school,genere,curs,min_edat,max_edat)
+                    data_sec = get_data_sec(school,genere,curs,min_edat,max_edat)
                     sec_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
                 <button class="nav-link text-dark border border-dark border-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Secundaria-Batxillerat</button>
                 </li>"""
@@ -143,9 +152,11 @@ def graphics():
                 admin_tab = ""
             else:
                 school_form = request.form['school']
+                if school_form == "All":
+                    school_form = ""
                 list_school = list_schools()
-                data_sec = get_data(school_form,genere,curs,min_edat,max_edat)
-                data_inf = get_data2(school_form,genere,curs,min_edat,max_edat)
+                data_sec = get_data_sec(school_form,genere,curs,min_edat,max_edat)
+                data_inf = get_data_inf(school_form,genere,curs,min_edat,max_edat)
                 pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
                 <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
                 </li>"""
@@ -159,15 +170,21 @@ def graphics():
                 admin_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
                     <button class="nav-link text-dark border border-dark border-2" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab" aria-controls="admin" aria-selected="false">Administrar</button>
                 </li> """
-                options_schools = """<option value="">Totes les escoles</option>\n"""
+                if school_form == "":
+                    options_schools = """<option value="All" selected="selected">Totes les escoles</option>\n"""
+                else:
+                    options_schools = """<option value="All">Totes les escoles</option>\n"""
                 for i in list_school:
-                    options_schools += "<option value="+i+">"+i+"</option>\n"
+                    if school_form == i:
+                        options_schools += "<option value="+i+" selected='selected'>"+i+"</option>\n"
+                    else:
+                        options_schools += "<option value="+i+">"+i+"</option>\n"
                 school_select += options_schools
                 school_select += """</select>
                 </div>"""
 
             labels = [[1,2,3,4,5],["JOCS DE TAULA","VIDEOJOCS","ESPORTS"],["MATES","ESPORTS","LLENGUA"]]
-            return render_template("graphics.html",display_email=email, display_school=school, labels=labels, data_inf=data_inf, data_sec=data_sec,school_select=school_select,admin_tab=admin_tab,pri_tab=pri_tab,sec_tab=sec_tab,sel_school=school_form,sel_course=curs,gender=genere)
+            return render_template("graphics.html",display_email=email, display_school=school, labels=labels, data_inf=data_inf, data_sec=data_sec,school_select=school_select,admin_tab=admin_tab,pri_tab=pri_tab,sec_tab=sec_tab,sel_school=school_form,sel_course=curs,sel_gender=genere)
         else:
             if (school != "ADMIN"):
                 courses = get_school(email)
@@ -176,12 +193,12 @@ def graphics():
                 data_sec = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
                 data_inf = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0],[0,0,0]]
                 if ("Infantil" in courses) or ("Primària" in courses):
-                    data_inf = get_data2(school,"","","","")
+                    data_inf = get_data_inf(school,"","",min_edat,max_edat)
                     pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
                 <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
                 </li>"""
                 if ("Secundària" in courses) or ("Batxillerat" in courses):
-                    data_sec = get_data(school,"","","","")
+                    data_sec = get_data_sec(school,"","",min_edat,max_edat)
                     sec_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
                 <button class="nav-link text-dark border border-dark border-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Secundaria-Batxillerat</button>
                 </li>"""
@@ -189,8 +206,8 @@ def graphics():
                 admin_tab = ""
             else:
                 list_school = list_schools()
-                data_sec = get_data("","","","","")
-                data_inf = get_data2("","","","","")
+                data_sec = get_data_sec("","","",min_edat,max_edat)
+                data_inf = get_data_inf("","","",min_edat,max_edat)
                 pri_tab = """<li class="nav-item" role="presentation" style="background-color: #A9F0BA;">
                 <button class="nav-link text-dark border border-dark border-2" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Infantil-Primaria</button>
                 </li>"""
