@@ -13,7 +13,7 @@ def init_bd():
     ID INT NOT NULL,
     NAME CHAR(20) NOT NULL,
     SECOND_NAME CHAR(20) NOT NULL,
-    AGE CHAR(10) NOT NULL,
+    AGE INT NOT NULL,
     SCHOOL CHAR(30) NOT NULL,
     COURSE CHAR(30) NOT NULL,
     GENDER CHAR(30) NOT NULL,
@@ -167,7 +167,7 @@ def last_alumne_id():
         return id
     return 0
 
-def get_data(school):
+def get_data(school,genere,curs,min_edat,max_edat):
     db = sqlite3.connect('dades.db')                                   
     cursor = db.cursor()
     
@@ -298,7 +298,7 @@ def get_data(school):
     data += [chart_9]
     return data
 
-def get_data2(school):
+def get_data2(school,genere,curs,min_edat,max_edat):
     db = sqlite3.connect('dades.db')                                   
     cursor = db.cursor()
     
