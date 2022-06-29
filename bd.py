@@ -52,12 +52,6 @@ def init_bd():
     FOREIGN KEY (ID) REFERENCES ALUMNE(ID)
     )""")
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS SCHOOLS(
-    SCHOOL_ID INT NOT NULL,
-    SCHOOL_NAME CHAR(20) NOT NULL,
-    PRIMARY KEY(SCHOOL_ID)
-    )""")
-
     cursor.execute("""CREATE TABLE IF NOT EXISTS LOGGED_USERS(
     EMAIL CHAR(40) NOT NULL,
     PASSWORD CHAR(40) NOT NULL,
@@ -66,8 +60,7 @@ def init_bd():
     SCHOOL CHAR(30) NOT NULL,
     GENDER CHAR(30) NOT NULL,
     ROLE CHAR(30) NOT NULL,
-    PRIMARY KEY(EMAIL),
-    FOREIGN KEY (SCHOOL) REFERENCES SCHOOLS(SCHOOL_NAME)
+    PRIMARY KEY(EMAIL)
     )""")
 
 def insert_alumne(id, name, second_name, age, school, course, gender):
@@ -167,14 +160,29 @@ def last_alumne_id():
         return id
     return 0
 
-def get_data(school,genere,curs,min_edat,max_edat):
+def get_data_sec(school,genere,curs,min_edat,max_edat):
     db = sqlite3.connect('dades.db')                                   
     cursor = db.cursor()
     
-    if school == "":
-        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE)"
+    if school == "" and genere == "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+")"
+    elif school == "" and genere == "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"')"
+    elif school == "" and genere != "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND GENDER = '"+genere+"')"
+    elif school == "" and genere != "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"' AND GENDER = '"+genere+"')"
+    elif school != "" and genere == "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND SCHOOL = '"+school+"')"
+    elif school != "" and genere == "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"' AND SCHOOL = '"+school+"')"
+    elif school != "" and genere != "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND GENDER = '"+genere+"' AND SCHOOL = '"+school+"')"
+    elif school != "" and genere != "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"' AND GENDER = '"+genere+"' AND SCHOOL = '"+school+"')"
     else:
-        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE SCHOOL = '"+school+"')"
+        sql = "SELECT * FROM PREGUNTES_SEC_BAT i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+")"
+
     cursor.execute(sql)
     data = []
     chart_1 = [0,0,0,0,0]
@@ -298,14 +306,29 @@ def get_data(school,genere,curs,min_edat,max_edat):
     data += [chart_9]
     return data
 
-def get_data2(school,genere,curs,min_edat,max_edat):
+def get_data_inf(school,genere,curs,min_edat,max_edat):
     db = sqlite3.connect('dades.db')                                   
     cursor = db.cursor()
-    
-    if school == "":
-        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE)"
+
+    if school == "" and genere == "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+")"
+    elif school == "" and genere == "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"')"
+    elif school == "" and genere != "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND GENDER = '"+genere+"')"
+    elif school == "" and genere != "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"' AND GENDER = '"+genere+"')"
+    elif school != "" and genere == "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND SCHOOL = '"+school+"')"
+    elif school != "" and genere == "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"' AND SCHOOL = '"+school+"')"
+    elif school != "" and genere != "" and curs == "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND GENDER = '"+genere+"' AND SCHOOL = '"+school+"')"
+    elif school != "" and genere != "" and curs != "":
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+" AND COURSE = '"+curs+"' AND GENDER = '"+genere+"' AND SCHOOL = '"+school+"')"
     else:
-        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE SCHOOL = '"+school+"')"
+        sql = "SELECT * FROM PREGUNTES_INF_PRI i WHERE i.ID IN (SELECT ID FROM ALUMNE WHERE AGE >= "+min_edat+" AND AGE <= "+max_edat+")"
+    
     cursor.execute(sql)
     data = []
     chart_1 = [0,0,0,0,0]
